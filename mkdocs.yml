@@ -1,0 +1,40 @@
+site_name: Pwned or not?
+repo_url: https://github.com/Scriptaron/pwned-or-not
+repo_name: Scriptaron/pwned-or-not
+edit_uri: tree/master/docs
+
+nav:
+  - Home: index.md
+
+theme:
+  language: pt-BR
+  name: material
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  palette:
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: teal
+      toggle:
+        icon: material/eye
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: teal
+      toggle:
+        icon: material/eye-outline
+        name: Switch to system preference
+        
