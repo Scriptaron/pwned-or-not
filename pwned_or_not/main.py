@@ -6,6 +6,7 @@ from customtkinter import (
     CTkFrame,
     CTkImage,
     CTkLabel,
+    CTkToplevel,
     set_appearance_mode,
 )
 from PIL import Image
@@ -18,6 +19,40 @@ root.geometry('450x200')
 root.title('Pwned or not?')
 set_appearance_mode('dark')
 root.resizable(width=False, height=False)
+
+
+def click_submit():
+    pw = Pwned(entry.get())
+    if pw.isPwned():
+        create_popup(
+            'Password found '
+            + str(pw.get_leaked_password())
+            + ' times in the dataset.\n Recommended to change it ASAP!', '#FD0000'
+        )
+    else:
+        create_popup(
+            'Your password was not found in the dataset. \nYou have a safe password!', '#3ce800'
+        )
+
+
+def create_popup(warning, color):
+    popup = CTkToplevel()
+    popup.geometry('400x125')
+    popup.title('Status')
+    popup.resizable(width=False, height=False)
+
+    popup_label = CTkLabel(popup, font=('Roboto', 18), text=warning, text_color=color)
+    popup_label.pack(pady=10)
+
+    popup_button = CTkButton(
+        popup,
+        text='Ok',
+        fg_color='#303134',
+        hover_color='#207c01',
+        font=('System', 20),
+        command=popup.destroy,
+    )
+    popup_button.pack(pady=10)
 
 
 def show_password():
@@ -72,7 +107,8 @@ button = CTkButton(
     text='Submit',
     font=('System', 20),
     fg_color='#303134',
-    hover_color='#207c01'
+    hover_color='#207c01',
+    command=click_submit,
 )
 button.pack(pady=20)
 
